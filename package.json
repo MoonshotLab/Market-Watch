@@ -9,6 +9,7 @@
   "author": "Joe Longstreet",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.6.1"
+    "express": "^4.6.1",
+    "sparknode": "^0.4.9"
   }
 }

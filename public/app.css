@@ -1,3 +1,22 @@
 body{
   background-color: black;
+  font-family: 'Helvetica';
+  color: white;
+  padding:10px 30px;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
+
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding:0;
+}
+
+li{
+  font-size: 120%;
+  padding-bottom: 20px;
 }
