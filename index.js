@@ -25,6 +25,14 @@ app.get('/notify-spark', function(req, res){
     if(err) console.log(err);
   });
 
+  if(req.query.directive == '1'){
+    setTimeout(function(){
+      core.notify('0,blue', function(err, data){
+        if(err) console.log(err);
+      });
+    }, 3000);
+  }
+
   res.send({ ok:true });
 });
 
