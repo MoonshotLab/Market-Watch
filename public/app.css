@@ -1,22 +1,40 @@
-body{
-  background-color: black;
-  font-family: 'Helvetica';
+header{
+  padding: 5px 30px;
+  border-bottom: 5px solid #015C80;
+  background-color: #026D97;
   color: white;
-  padding:10px 30px;
+}
+
+body{
+  background-color: white;
+  font-family: 'Helvetica';
+  color: #026D97;
+  padding: 0;
+  margin: 0;
+}
+
+section{
+  padding: 0px 30px;
+}
+
+h2{
+  margin-bottom: 25px;
 }
 
 a{
-  color: white;
+  color: #026D97;
   text-decoration: none;
 }
 
 ul{
+  background-color: rgba(0,0,0,.05);
+  border: 2px solid rgba(0, 0, 0, .075);
   list-style-type: none;
-  margin: 0;
-  padding:0;
+  padding: 20px 0 0 0;
+  margin-bottom: 30px;
 }
 
 li{
   font-size: 120%;
-  padding-bottom: 20px;
+  padding: 0 20px 20px;
 }
