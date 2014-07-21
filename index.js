@@ -39,27 +39,29 @@ var getDowJones = function(){
   console.log('checking dow jones...');
   needle.get(djURL, function(error, response, body){
     if (!error && response.statusCode == 200){
-      var price = null;
-      try{ price = body.CompositeTrading.Last.Price.Value; }
+      var currentPrice = null;
+      var openingPrice = null;
+      try{
+        currentPrice = body.CompositeTrading.Last.Price.Value;
+        openingPrice = body.CompositeTrading.Open.Value;
+      }
       catch(err){ console.log(err); }
 
-      if(price) priceUpdate(price);
+      if(currentPrice && openingPrice)
+        priceUpdate(openingPrice, currentPrice);
     }
   });
 };
 
 
-var lastPrice = 0;
-var priceUpdate = function(price){
-  console.log('comparing price...', price, 'vs', lastPrice);
+var priceUpdate = function(openingPrice, currentPrice){
+  console.log('comparing price...', openingPrice, 'vs', currentPrice);
 
   var params = null;
-  if(price > lastPrice)
-    params = '1,green';
-  else if(price < lastPrice)
-    params = '1,red';
-
-  lastPrice = price;
+  if(currentPrice > openingPrice)
+    params = '1,white';
+  else if(currentPrice < openingPrice)
+    params = '1,yellow';
 
   if(params){
     core.notify(params, function(err, data){
@@ -75,4 +77,4 @@ var priceUpdate = function(price){
 };
 
 
-setInterval(getDowJones, 5000);
+setInterval(getDowJones, 60000);
