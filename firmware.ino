@@ -31,6 +31,10 @@ int notify(String command)
     rVal = 0;
     gVal = 0;
     bVal = 255;
+  } else if (color == "yellow"){
+    rVal = 255;
+    gVal = 255;
+    bVal = 0;
   }
 
   return 1;
