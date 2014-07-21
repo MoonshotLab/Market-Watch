@@ -14,13 +14,15 @@ var core = new spark.Core({
   id: process.env.SPARK_ID
 });
 
-core.on('connect', function(){
+core.on('connect', function(e){
+  console.log(e);
   console.log('connected');
 });
 
 app.get('/notify-spark', function(req, res){
-  var param = req.query.directive;
-  core.notify(param, function(err, data){
+  var params = req.query.directive + ',' + req.query.color;
+  core.notify(params, function(err, data){
+    if(err) console.log(err);
     console.log(data);
   });
 
