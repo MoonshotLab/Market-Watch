@@ -1,6 +1,7 @@
 int rVal = 255;
 int gVal = 255;
 int bVal = 0;
+int buzzer = D7;
 
 int flashState = 0;
 String should = "breathe";
@@ -37,12 +38,21 @@ int notify(String command)
     bVal = 0;
   }
 
+  digitalWrite(buzzer, 1);
+  delay(300);
+  digitalWrite(buzzer, 0);
+  delay(300);
+  digitalWrite(buzzer, 1);
+  delay(300);
+  digitalWrite(buzzer, 0);
+
   return 1;
 }
 
 
 void setup()
 {
+  pinMode(buzzer, OUTPUT);
   RGB.control(true);
   RGB.brightness(255);
   RGB.color(rVal, gVal, bVal);
