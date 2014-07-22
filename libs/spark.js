@@ -6,6 +6,11 @@ var core = new spark.Core({
 });
 
 
+core.on('error', function(e){
+  console.log(e);
+});
+
+
 var connect = function(){
   core.on('connect', function(e){
     console.log('Spark Connected:', e);
@@ -22,4 +27,4 @@ var notify = function(params, next){
 
 
 exports.connect = connect;
-exports.core = core;
+exports.notify = notify;

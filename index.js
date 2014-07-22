@@ -11,7 +11,7 @@ var port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 spark.connect();
-dj.poll();
+dj.startPoll();
 
 
 app.get('/notify-spark', function(req, res){

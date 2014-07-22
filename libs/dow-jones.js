@@ -1,4 +1,4 @@
-var core = require('./libs/core');
+var spark = require('./spark');
 var djURL = 'http://betawebapi.dowjones.com/fintech/data/api/v1/quotes/dji';
 
 
@@ -32,12 +32,12 @@ var priceUpdate = function(openingPrice, currentPrice){
     params = '1,yellow';
 
   if(params){
-    core.notify(params, function(err, data){
+    spark.notify(params, function(err, data){
       if(err) console.log(err);
     });
 
     setTimeout(function(){
-      core.notify('0,blue', function(err, data){
+      spark.notify('0,blue', function(err, data){
         if(err) console.log(err);
       });
     }, 3000);
