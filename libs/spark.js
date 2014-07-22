@@ -13,16 +13,22 @@ core.on('error', function(e){
 
 var connect = function(){
   core.on('connect', function(e){
-    console.log('Spark Connected:', e);
+    if(e.connected === false) connect();
+    else
+      console.log('Spark Connected:', e);
   });
 };
 
 
 var notify = function(params, next){
-  core.notify(params, function(err, data){
-    if(err) console.log(err);
-    if(next) next(data);
-  });
+  try{
+    core.notify(params, function(err, data){
+      if(err) console.log(err);
+      if(next) next(data);
+    });
+  } catch(e){
+    console.log(e);
+  }
 };
 
 
