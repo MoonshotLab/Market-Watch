@@ -1,3 +1,4 @@
+var needle = require('needle');
 var spark = require('./spark');
 var djURL = 'http://betawebapi.dowjones.com/fintech/data/api/v1/quotes/dji';
 
