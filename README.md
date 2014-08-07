@@ -3,7 +3,7 @@ A web service which polls the Dow Jones for changes in the DJI index. When a cha
 
 A small companion web page allows you to simulate different effects.
 
-## Watch Colors
+## Watch States
 * Breathe Green - DJI above starting point
 * Breathe Red - DJI below starting point
 * Blink Blue - Markets in low volatility
