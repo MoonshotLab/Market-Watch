@@ -17,12 +17,6 @@ app.get('/notify-spark', function(req, res){
   var params = req.query.directive + ',' + req.query.color;
   spark.notify(params);
 
-  if(req.query.directive == '1'){
-    setTimeout(function(){
-      spark.notify('0, blue');
-    }, 3000);
-  }
-
   res.send({ ok: true });
 });
 

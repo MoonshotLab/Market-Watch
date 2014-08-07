@@ -28,9 +28,9 @@ var priceUpdate = function(openingPrice, currentPrice){
 
   var params = null;
   if(currentPrice > openingPrice)
-    params = '1,white';
+    params = '0,green';
   else if(currentPrice < openingPrice)
-    params = '1,yellow';
+    params = '0,red';
 
   if(params){
     spark.notify(params, function(err, data){
@@ -48,7 +48,7 @@ var priceUpdate = function(openingPrice, currentPrice){
 
 var poll = null;
 var startPoll = function(){
-  poll = setInterval(getDowJones, 60000);
+  poll = setInterval(getDowJones, 15000);
 };
 
 
