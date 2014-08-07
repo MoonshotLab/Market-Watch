@@ -27,6 +27,7 @@ var notify = function(params, next){
       if(next) next(data);
     });
   } catch(e){
+    connect();
     console.log(e);
   }
 };
