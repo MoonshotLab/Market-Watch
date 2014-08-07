@@ -3,6 +3,13 @@ A web service which polls the Dow Jones for changes in the DJI index. When a cha
 
 A small companion web page allows you to simulate different effects.
 
-# Environment Variables
+## Watch Colors
+* Breathe Green - DJI above starting point
+* Breathe Red - DJI below starting point
+* Blink Blue - Markets in low volatility
+* Blink Yellow - Markets in high volatility
+* Blink Red - Trading Over
+
+## Environment Variables
 * `SPARK_ID` - The id of the Spark core.
 * `SPARK_TOKEN` - The access token for the Spark core.
