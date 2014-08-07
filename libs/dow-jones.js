@@ -1,3 +1,4 @@
+var lastMarketState = null;
 var needle = require('needle');
 var spark = require('./spark');
 var djURL = 'http://betawebapi.dowjones.com/fintech/data/api/v1/quotes/dji';
@@ -27,21 +28,20 @@ var priceUpdate = function(openingPrice, currentPrice){
   console.log('comparing price...', openingPrice, 'vs', currentPrice);
 
   var params = null;
-  if(currentPrice > openingPrice)
+  var marketState = null;
+  if(currentPrice > openingPrice){
+    marketState = 'high';
     params = '0,green';
-  else if(currentPrice < openingPrice)
+  } else if(currentPrice < openingPrice){
+    marketState = 'low';
     params = '0,red';
+  }
 
-  if(params){
+  if(params && marketState != lastMarketState){
     spark.notify(params, function(err, data){
       if(err) console.log(err);
+      else lastMarketState = marketState;
     });
-
-    setTimeout(function(){
-      spark.notify('0,blue', function(err, data){
-        if(err) console.log(err);
-      });
-    }, 3000);
   }
 };
 
