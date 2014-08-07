@@ -27,18 +27,22 @@ var getDowJones = function(){
 var priceUpdate = function(openingPrice, currentPrice){
   console.log('comparing price...', openingPrice, 'vs', currentPrice);
 
-  var params = null;
   var marketState = null;
+  var color = null;
 
   if(currentPrice > openingPrice){
     marketState = 'high';
-    params = '0,green';
+    color = 'green';
   } else if(currentPrice < openingPrice){
     marketState = 'low';
-    params = '0,red';
+    color = 'red';
   }
 
-  if(params && marketState != lastMarketState){
+  if(color){
+    var vibrate = '0';
+    if(marketState != lastMarketState) vibrate = '1';
+
+    params = '0,' + vibrate + ',' + color;
     spark.notify(params, function(err, data){
       if(err) {
         console.log('Could not notify core', err);

@@ -7,11 +7,11 @@ int flashState = 0;
 String should = "breathe";
 
 
-// Pass in the params like 1,green or 0,blue
 int notify(String command)
 {
+  int shouldVibrate = command.charAt(2) - '0';
   char directive = command.charAt(0);
-  String color = command.substring(2, command.length());
+  String color = command.substring(4, command.length());
 
   if(directive == '0') should = "breathe";
   else if(directive == '1') should = "flash";
@@ -38,13 +38,15 @@ int notify(String command)
     bVal = 0;
   }
 
-  digitalWrite(buzzer, 1);
-  delay(300);
-  digitalWrite(buzzer, 0);
-  delay(300);
-  digitalWrite(buzzer, 1);
-  delay(300);
-  digitalWrite(buzzer, 0);
+  if(shouldVibrate == 1){
+    digitalWrite(buzzer, 1);
+    delay(300);
+    digitalWrite(buzzer, 0);
+    delay(300);
+    digitalWrite(buzzer, 1);
+    delay(300);
+    digitalWrite(buzzer, 0);
+  }
 
   return 1;
 }

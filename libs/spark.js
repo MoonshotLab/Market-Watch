@@ -12,7 +12,7 @@ var notify = function(params, next){
     params: params
   };
 
-  needle.post(url, postOpts, {timeout: 2000}, function(err, res, body){
+  needle.post(url, postOpts, {timeout: 5000}, function(err, res, body){
     next(err, body);
   });
 };
