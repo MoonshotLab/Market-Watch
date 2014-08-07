@@ -29,6 +29,7 @@ var priceUpdate = function(openingPrice, currentPrice){
 
   var params = null;
   var marketState = null;
+
   if(currentPrice > openingPrice){
     marketState = 'high';
     params = '0,green';
@@ -39,23 +40,18 @@ var priceUpdate = function(openingPrice, currentPrice){
 
   if(params && marketState != lastMarketState){
     spark.notify(params, function(err, data){
-      if(err) console.log(err);
-      else lastMarketState = marketState;
+      if(err) {
+        console.log('Could not notify core', err);
+        lastMarketState = null;
+      } else {
+        lastMarketState = marketState;
+        console.log('notified spark');
+      }
     });
   }
+
+  setTimeout(getDowJones, 15000);
 };
 
 
-var poll = null;
-var startPoll = function(){
-  poll = setInterval(getDowJones, 15000);
-};
-
-
-var stopPoll = function(){
-  clearInterval(poll);
-};
-
-
-exports.startPoll = startPoll;
-exports.stopPoll = stopPoll;
+exports.getDowJones = getDowJones;

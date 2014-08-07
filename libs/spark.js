@@ -1,37 +1,21 @@
-var spark = require('sparknode');
-var core = null;
-
-
-var connect = function(){
-  core = new spark.Core({
-    accessToken: process.env.SPARK_TOKEN,
-    id: process.env.SPARK_ID
-  });
-
-  core.on('connect', function(e){
-    if(e.connected === false) connect();
-    else
-      console.log('Spark Connected:', e);
-  });
-
-  core.on('error', function(e){
-    console.log(e);
-  });
-};
-
+var needle = require('needle');
 
 var notify = function(params, next){
-  try{
-    core.notify(params, function(err, data){
-      if(err) console.log(err);
-      if(next) next(err, data);
-    });
-  } catch(e){
-    connect();
-    console.log(e);
-  }
+  var url = [
+    'https://api.spark.io/v1/devices',
+    process.env.SPARK_ID,
+    'notify'
+  ].join('/');
+
+  var postOpts = {
+    access_token: process.env.SPARK_TOKEN,
+    params: params
+  };
+
+  needle.post(url, postOpts, {timeout: 2000}, function(err, res, body){
+    next(err, body);
+  });
 };
 
 
-exports.connect = connect;
 exports.notify = notify;

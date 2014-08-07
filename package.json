@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "express": "4.6.1",
-    "sparknode": "0.4.9",
     "needle": "0.7.2"
   },
   "engines": {

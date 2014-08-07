@@ -9,9 +9,7 @@ var server = http.Server(app);
 var port = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
-spark.connect();
-dj.startPoll();
-
+dj.getDowJones();
 
 app.get('/notify-spark', function(req, res){
   var params = req.query.directive + ',' + req.query.color;
@@ -19,6 +17,7 @@ app.get('/notify-spark', function(req, res){
 
   res.send({ ok: true });
 });
+
 
 server.listen(port, function(){
   console.log('server started, listening on port ' + port + '...');
