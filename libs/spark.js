@@ -13,7 +13,7 @@ var notify = function(params, next){
   };
 
   needle.post(url, postOpts, {timeout: 5000}, function(err, res, body){
-    next(err, body);
+    if(next) next(err, body);
   });
 };
 
